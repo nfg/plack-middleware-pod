@@ -36,6 +36,12 @@ WriteMakefile1(
     PREREQ_PM => {
         'Test::More' => 0,
         'Pod::POM' => 0,
+        'Plack::Middleware' => 0,
+        
+        # For testing
+        'Plack::Test' => 0,
+        'Plack::Builder' => 0,
+        'HTTP::Request::Common' => 0,
    },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'Dancer-SearchApp-*' },
