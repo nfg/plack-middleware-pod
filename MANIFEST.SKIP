@@ -20,3 +20,5 @@ Makefile$
 ^t/documents/.*.mp3$
 ^tika.cmd$
 ^.releaserc
+^Plack-Middleware-Pod-*/
+^Plack-Middleware-Pod-*.tar.gz$
