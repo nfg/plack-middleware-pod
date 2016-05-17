@@ -10,6 +10,7 @@ use Plack::Util::Accessor qw(
     root
     pass_through
     pod_view
+    redirect_to_metacpan
 );
 
 =head1 NAME
@@ -80,7 +81,18 @@ sub _handle_pod {
         return [
             200, ["Content-Type" => "text/html"], [$v->print($pom)]
         ];
-    } else {
+    }
+    elsif ($self->redirect_to_metacpan) {
+        $path =~ s!$r!!;
+        $path =~ s!/!::!g;
+        $path =~ s!\.pm$!!;
+
+        my $url = 'http://metacpan.org/pod/'.$path;
+        return [
+            302, ['Location' => $url, 'Content-type' => 'text/plain' ], [ 'redirect to ' . $url ]
+        ];
+    }
+    else {
         #warn "[$path] not found";
         return
     }
